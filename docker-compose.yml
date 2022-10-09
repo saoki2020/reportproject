@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: ./reportdb
+    container_name: report_db_container
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  api:
+    build:
+      context: ./reportapi
+    container_name: report_api_container
+    tty: true
