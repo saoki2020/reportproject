@@ -3,16 +3,27 @@ version: '3'
 services:
   db:
     build:
-      context: ./reportdb
+      context: .
+      dockerfile: ./reportdb/Dockerfile
     container_name: report_db_container
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    healthcheck:
+      test: "mysql --password=${MYSQL_ROOT_PASSWORD} --execute 'show databases;'"
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   api:
     build:
-      context: ./reportapi
+      context: .
+      dockerfile: ./reportapi/Dockerfile
     container_name: report_api_container
     tty: true
+    depends_on:
+      db:
+        condition: service_healthy

@@ -1,10 +1,10 @@
 // DBの接続設定
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
-  host: 'report_db_container',
-  user: 'root',
-  password: 'root',
-  database: 'report_db',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 });
 
 // bcryptの設定

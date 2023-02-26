@@ -4,7 +4,7 @@ WORKDIR /api
 
 ENV TZ=Asia/Tokyo
 
-COPY . .
+COPY ./reportapi /api
 
 RUN npm install
 

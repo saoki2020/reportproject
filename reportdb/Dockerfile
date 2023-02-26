@@ -11,9 +11,9 @@ ENV LANG=ja_JP.UTF-8
 
 ENV TZ=Asia/Tokyo
 
-COPY ./sql /docker-entrypoint-initdb.d
+COPY ./reportdb/sql /docker-entrypoint-initdb.d
 
-COPY ./conf/my.cnf /etc/mysql/conf.d/mysql.cnf
+COPY ./reportdb/conf/my.cnf /etc/mysql/conf.d/mysql.cnf
 
 EXPOSE 3306
 
